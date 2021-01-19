@@ -1,0 +1,146 @@
+/* header and footer in shared css */
+/* starting with main */
+main {
+  /* keep the sign-up title from scrapping
+  the top of the page */
+  padding-top: 1rem;
+}
+
+.signup-title {
+  text-align: center;
+  /* aligns itself.*/
+  font-size: 1.8rem;
+  color: #ff5454;
+}
+
+.signup-form {
+  /* add padding so that everthing INSIDE is seprated
+  from the outer border */
+  padding: 1rem;
+}
+
+.signup-form label {
+  font-weight: bold;
+  /* looks good in mobile
+  but not on desktop. see below for alternative media query*/
+}
+
+.signup-form input,
+.signup-form label,
+.signup-form select {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  /* this works for mobile devices */
+}
+/*
+.signup-form input[type=checkbox]{
+  // only checkboxes
+}
+*/
+/* <input type="checkbox" id="agree-terms" */
+/*.signup-form input[id*="terms"]/* "terms" can be in any part of the id*/
+/*prefix-suffix*/
+/* input is a tag in the .signup form div. id is an attribute of the input */
+.signup-form input[id*="terms"],
+.signup-form input[id*="terms"] + label {
+  /* target all labels that follow the condition*/
+  display: inline-block;
+  /* now we can vertically align these.
+  they are collectively in some "parent"
+  that makes up the line that both the check box and
+  the label are a part of */
+  width: auto;
+  /*vertical-align: middle;*/
+  vertical-align: bottom;
+}
+/*
+<select id="title">
+    <option value="mr">Mr.</option>
+    <option value="ms">Ms.</option>
+</select>
+
+below selects two html tags in the .signup form.
+*/
+.signup-form input:not([type="checkbox"]),
+.signup-form select {
+  border: 1px solid #ccc;
+  padding: 0.2rem 0.5rem;
+  /* the font inside the input fields  is different
+  then what was used for the lable.  so we adjust */
+  font: inherit;
+  /* don't use browser defaults. use what is used
+  on the rest of the page */
+}
+/*.signup-form input:focus:not([type="checkbox"]),
+.signup-form select:focus{
+  outline: none;
+  background:#d8f3df; /* change the background to  a light grey
+  border-color: #2ddf5c;
+}
+*/
+/* removed the "not" so that the outline is none for
+even the checkbox */
+.signup-form input:focus,
+.signup-form select:focus {
+  outline: none;
+  background: #d8f3df;
+  /* change the background to  a light grey*/
+  border-color: #2ddf5c;
+}
+
+.signup-form input[type="checkbox"] {
+  border: 1px solid #ccc;
+  background: white;
+  width: 1rem;
+  height: 1rem;
+  /* it is of type block but then
+  cahnged to an inline block (id=terms)as defined
+  in the html tags for input above
+  so we can turn it into a checkbox*/
+  /* overright what is currently in the user agent
+  or browser specific*/
+  -webkit-appearance: none;
+  /* without only this you get your style but
+  you can't check it */
+  -moz-appearance: none;
+  appearance: none;
+  /* you removed the appearance of the check when
+  you check the box - so you have to add it manually
+  */
+}
+
+.signup-form input[type="checkbox"]:checked {
+  /* what styles you want when it is checked */
+  background: #2ddf5c;
+  border: #0e4f1f;
+}
+/* add invalid class with javascript to anything that is
+invalid. put it at theend so that it takes precedience
+.signup-form input.invalid,*/
+/* select al inputs that are invalid*/
+/*.signup-form input.invalid,
+.signup-form select.invalid,*/
+.signup-form :invalid {
+  border-color: red !important;
+  /* important valid because its temporary*/
+  background-color: #faacac;
+}
+/* there is really only one button. but lets practice
+anyway.
+  <button type="submit" class="button">Sign Up</button>
+*/
+.signup-form button[type="submit"] {
+  display: block;
+  /*doesn't take all the wisth like other elements.
+  which is differnet for a block level item */
+  margin-top: 1rem;
+}
+@media (min-width:40rem) {
+  .signup-form {
+    margin: auto;
+    /* go to middle of page*/
+    width: 25rem;
+    /* take up 16*30 of the width */
+  }
+}
